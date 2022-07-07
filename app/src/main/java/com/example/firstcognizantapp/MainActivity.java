@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         int a = 10;
         int g = 6;
         //newIntent.putExtra("keyn", name);
-        throw new NullPointerException();
-        //startActivityForResult(homeIntent, 123);
+        //throw new NullPointerException();
+        startActivityForResult(homeIntent, 123);
     }
 
     @Override
