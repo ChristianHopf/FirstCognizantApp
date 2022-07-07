@@ -75,8 +75,11 @@ public class MainActivity extends AppCompatActivity {
         //Employee christianEmployee = new Employee("Christian", 45, 22.2f);
         //String name = nameEditText.getText().toString();
         Intent homeIntent = new Intent(this, HomeActivity.class);
+        int a = 10;
+        int g = 6;
         //newIntent.putExtra("keyn", name);
-        startActivityForResult(homeIntent, 123);
+        throw new NullPointerException();
+        //startActivityForResult(homeIntent, 123);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.firstcognizantapp;
 
 public class Student {
+    static String COLLEGE_NAME = "IU";
     String studentName;
     int studentAge;
     float stipend;
