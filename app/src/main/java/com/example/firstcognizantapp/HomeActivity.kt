@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import android.provider.AlarmClock
+import android.util.Log
 
 class HomeActivity : AppCompatActivity() {
     lateinit var contactEditText: EditText;
@@ -18,6 +19,9 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         contactEditText = findViewById(R.id.etContact)
         contactTextView = findViewById(R.id.tvContact)
+        var myStudent: Student? = intent.getParcelableExtra<Student>("student")
+        Log.i(TAG, myStudent.toString())
+
         var name = intent.extras?.getString("keyn")
         contactTextView.text = name
     }
@@ -54,5 +58,9 @@ class HomeActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null){
             startActivity(intent)
         }
+    }
+
+    companion object{
+        var TAG = HomeActivity::class.java.simpleName
     }
 }

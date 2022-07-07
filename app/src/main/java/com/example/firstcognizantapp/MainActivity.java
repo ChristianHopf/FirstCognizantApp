@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
         //Student christianStudent = new Student("Christian", 22, 42.0f);
         //Employee christianEmployee = new Employee("Christian", 45, 22.2f);
         //String name = nameEditText.getText().toString();
+        Student parcelStudent = new Student("Parcel", 679, 55.5f);
         Intent homeIntent = new Intent(this, HomeActivity.class);
-        int a = 10;
-        int g = 6;
+        homeIntent.putExtra("student", parcelStudent);
         //newIntent.putExtra("keyn", name);
         //throw new NullPointerException();
         startActivityForResult(homeIntent, 123);
