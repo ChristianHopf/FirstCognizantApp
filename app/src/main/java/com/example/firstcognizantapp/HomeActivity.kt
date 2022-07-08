@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.Menu
 import android.provider.AlarmClock
 import android.util.Log
 import android.widget.*
@@ -12,6 +15,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var contactEditText: EditText;
     lateinit var contactTextView: TextView;
     lateinit var languagesListView: ListView;
+    lateinit var buttonGallery: Button;
     var languages = arrayOf("English", "German", "French", "Japanese")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +24,9 @@ class HomeActivity : AppCompatActivity() {
         contactEditText = findViewById(R.id.etContact)
         contactTextView = findViewById(R.id.tvContact)
         languagesListView = findViewById(R.id.lvLanguages)
-        var adapter = ArrayAdapter<String>(this,
+        buttonGallery = findViewById(R.id.btnGallery)
+        registerForContextMenu(buttonGallery);
+       /* var adapter = ArrayAdapter<String>(this,
                 R.layout.listview_row,
                 R.id.tvRow,
                 languages)
@@ -30,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
         Log.i(TAG, myStudent.toString())
 
         var name = intent.extras?.getString("keyn")
-        contactTextView.text = name
+        contactTextView.text = name*/
     }
 
     fun contactHandler(clickedView: View) {
@@ -65,6 +71,47 @@ class HomeActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null){
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        var mi = menuInflater
+        mi.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when(item.itemId){
+            R.id.settingsmi -> {
+                Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show();
+            }
+            R.id.logoutmi -> {
+                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
+            }
+        }
+        return true;
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.btn_context_menu, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        super.onContextItemSelected(item)
+        when(item.itemId){
+            R.id.editmi -> {
+                Toast.makeText(this, "edit", Toast.LENGTH_SHORT).show()
+            }
+            R.id.delmi -> {
+                Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show()
+            }
+            R.id.sharemi -> {
+                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return true
     }
 
     companion object{
