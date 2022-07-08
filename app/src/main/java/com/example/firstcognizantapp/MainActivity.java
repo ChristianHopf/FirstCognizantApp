@@ -9,22 +9,28 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.net.Uri;
 import androidx.annotation.Nullable;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener, AdapterView.OnItemSelectedListener {
 
     public static String TAG = MainActivity.class.getSimpleName();
     EditText nameEditText;
     TextView resultTextView;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nameEditText = findViewById(R.id.etName);
+        nameEditText.setOnFocusChangeListener(this);
         resultTextView = findViewById(R.id.tvResult);
+        spinner = findViewById(R.id.spinnerPhone);
+        spinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -89,5 +95,25 @@ public class MainActivity extends AppCompatActivity {
             String contact = dataIntent.getExtras().getString("contactKey");
             resultTextView.setText(contact);
         }
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean isFocussed) {
+        if (isFocussed){
+            Toast.makeText(this, "FOCUSING", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "LOST FOCUS", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        String type = adapterView.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
