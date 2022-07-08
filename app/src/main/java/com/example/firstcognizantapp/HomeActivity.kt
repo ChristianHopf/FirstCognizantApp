@@ -4,21 +4,28 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import android.provider.AlarmClock
 import android.util.Log
+import android.widget.*
 
 class HomeActivity : AppCompatActivity() {
     lateinit var contactEditText: EditText;
     lateinit var contactTextView: TextView;
+    lateinit var languagesListView: ListView;
+    var languages = arrayOf("English", "German", "French", "Japanese")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         contactEditText = findViewById(R.id.etContact)
         contactTextView = findViewById(R.id.tvContact)
+        languagesListView = findViewById(R.id.lvLanguages)
+        var adapter = ArrayAdapter<String>(this,
+                R.layout.listview_row,
+                R.id.tvRow,
+                languages)
+        languagesListView.adapter = adapter
+
         var myStudent: Student? = intent.getParcelableExtra<Student>("student")
         Log.i(TAG, myStudent.toString())
 
