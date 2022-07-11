@@ -1,10 +1,12 @@
 package com.example.firstcognizantapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +33,26 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         resultTextView = findViewById(R.id.tvResult);
         spinner = findViewById(R.id.spinnerPhone);
         spinner.setOnItemSelectedListener(this);
+
+        if (savedInstanceState != null){
+            resultTextView.setText(savedInstanceState.getString("contact"));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putString("name", nameEditText.getText().toString());
+        Log.d(TAG, "save state");
+    }
+
+    @Override
+    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        if (savedInstanceState != null) {
+            Toast.makeText(this, savedInstanceState.getString("name"), Toast.LENGTH_SHORT).show();
+        }
+        Log.d(TAG, "restore state");
     }
 
     @Override
