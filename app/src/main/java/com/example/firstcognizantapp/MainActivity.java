@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         }
     }
 
-    @Override
+    /*@Override
     public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
         outState.putString("name", nameEditText.getText().toString());
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             Toast.makeText(this, savedInstanceState.getString("name"), Toast.LENGTH_SHORT).show();
         }
         Log.d(TAG, "restore state");
-    }
+    }*/
 
     @Override
     protected void onStart() {
