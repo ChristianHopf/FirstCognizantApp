@@ -102,12 +102,14 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         //Student christianStudent = new Student("Christian", 22, 42.0f);
         //Employee christianEmployee = new Employee("Christian", 45, 22.2f);
         //String name = nameEditText.getText().toString();
-        Student parcelStudent = new Student("Parcel", 679, 55.5f);
-        Intent homeIntent = new Intent(this, HomeActivity.class);
-        homeIntent.putExtra("student", parcelStudent);
+        //Student parcelStudent = new Student("Parcel", 679, 55.5f);
+        //Intent homeIntent = new Intent(this, HomeActivity.class);
+        //homeIntent.putExtra("student", parcelStudent);
         //newIntent.putExtra("keyn", name);
         //throw new NullPointerException();
-        startActivityForResult(homeIntent, 123);
+        //startActivityForResult(homeIntent, 123);
+        String name = nameEditText.getText().toString();
+        resultTextView.setText(name);
     }
 
     @Override
